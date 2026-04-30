@@ -1,0 +1,17 @@
+﻿序号,名称,点位汇总,实景图汇总,点位数,已关联数
+1,b1_n_to_4001.png,"b1_n_to_4001.png/热点 1(x=0.7061, y=0.1935)；b1_n_to_4001.png/热点 2(x=0.7075, y=0.4586)",b1_7.jpg；b1_5.jpg,2,2
+2,b1_n_to_4002.png,"b1_n_to_4002.png/热点 1(x=0.7068, y=0.1906)；b1_n_to_4002.png/热点 2(x=0.7069, y=0.4693)",b1_7.jpg；b1_5.jpg,2,2
+3,b1_n_to_b1_main_engine_room.png,"b1_n_to_b1_main_engine_room.png/热点 1(x=0.7062, y=0.2187)",b1_6.jpg,1,1
+4,b1_n_to_b1_multifunction_hall.png,"b1_n_to_b1_multifunction_hall.png/热点 1(x=0.7063, y=0.1926)；b1_n_to_b1_multifunction_hall.png/热点 2(x=0.7063, y=0.4567)；b1_n_to_b1_multifunction_hall.png/热点 3(x=0.5989, y=0.4577)；b1_n_to_b1_multifunction_hall.png/热点 4(x=0.5989, y=0.6368)",b1_7.jpg；b1_4.jpg；b1_10.jpg；b1_11.jpg,4,4
+5,b1_n_to_b1_multifunction_lobby.png,"b1_n_to_b1_multifunction_lobby.png/热点 1(x=0.7064, y=0.1907)；b1_n_to_b1_multifunction_lobby.png/热点 2(x=0.7057, y=0.4578)",b1_7.jpg；b1_4.jpg,2,2
+6,b1_n_to_b1_power_room.png,"b1_n_to_b1_power_room.png/热点 1(x=0.7072, y=0.2197)；b1_n_to_b1_power_room.png/热点 2(x=0.7722, y=0.2217)",b1_6.jpg；b1_8.jpg,2,2
+7,b1_n_to_b1_s.png,"b1_n_to_b1_s.png/热点 1(x=0.7060, y=0.1937)；b1_n_to_b1_s.png/热点 2(x=0.7067, y=0.4541)",b1_7.jpg；b1_5.jpg,2,2
+8,b1_n_to_b1_storage_room.png,"b1_n_to_b1_storage_room.png/热点 1(x=0.7068, y=0.2218)",b1_6.jpg,1,1
+9,b1_s_to_4001.png,"b1_s_to_4001.png/热点 1(x=0.7068, y=0.7680)",b1_1.jpg,1,1
+10,b1_s_to_4002.png,"b1_s_to_4002.png/热点 1(x=0.7069, y=0.7680)",b1_1.jpg,1,1
+11,b1_s_to_b1_main_engine_room.png,"b1_s_to_b1_main_engine_room.png/热点 1(x=0.6994, y=0.4504)；b1_s_to_b1_main_engine_room.png/热点 2(x=0.6994, y=0.2199)",b1_3.jpg；b1_6.jpg,2,2
+12,b1_s_to_b1_multifunction_hall.png,"b1_s_to_b1_multifunction_hall.png/热点 1(x=0.6988, y=0.4582)；b1_s_to_b1_multifunction_hall.png/热点 2(x=0.5960, y=0.4582)；b1_s_to_b1_multifunction_hall.png/热点 3(x=0.5954, y=0.6335)",b1_4.jpg；b1_10.jpg；b1_11.jpg,3,3
+13,b1_s_to_b1_multifunction_lobby.png,"b1_s_to_b1_multifunction_lobby.png/热点 1(x=0.6989, y=0.4582)",b1_4.jpg,1,1
+14,b1_s_to_b1_n.png,"b1_s_to_b1_n.png/热点 1(x=0.6989, y=0.4583)",b1_3.jpg,1,1
+15,b1_s_to_b1_power_room.png,"b1_s_to_b1_power_room.png/热点 1(x=0.6984, y=0.4564)；b1_s_to_b1_power_room.png/热点 2(x=0.6977, y=0.2200)；b1_s_to_b1_power_room.png/热点 3(x=0.7724, y=0.2219)",b1_3.jpg；b1_6.jpg；b1_8.jpg,3,3
+16,b1_s_to_b1_storage_room.png,"b1_s_to_b1_storage_room.png/热点 1(x=0.6985, y=0.4633)；b1_s_to_b1_storage_room.png/热点 2(x=0.6992, y=0.2210)",b1_3.jpg；b1_6.jpg,2,2

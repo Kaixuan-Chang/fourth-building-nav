@@ -35,6 +35,17 @@ const photoModal = $("photoModal");
 const photoClose = $("photoClose");
 const photoImg = $("photoImg");
 const photoStage = $("photoStage");
+const loadingModal = $("loadingModal");
+
+function showLoadingModal() {
+  loadingModal?.classList.remove("hidden");
+  document.body.classList.add("loading-open");
+}
+
+function hideLoadingModal() {
+  loadingModal?.classList.add("hidden");
+  document.body.classList.remove("loading-open");
+}
 
 function esc(s) {
   return String(s ?? "")
@@ -433,12 +444,17 @@ window.addEventListener("resize", updatePhotoScale);
 photoImg.addEventListener("load", updatePhotoScale);
 
 queryBtn.addEventListener("click", async () => {
+  queryBtn.disabled = true;
+  showLoadingModal();
   try {
     await renderBySelection();
   } catch (e) {
     stage.classList.add("hidden");
     empty.classList.remove("hidden");
     empty.textContent = e.message;
+  } finally {
+    hideLoadingModal();
+    queryBtn.disabled = false;
   }
 });
 

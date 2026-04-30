@@ -175,7 +175,12 @@ async function syncDestinations(options) {
 }
 
 async function pickBinding(startId, destId) {
-  return (await getUsableBindingsForStart(startId)).find((b) => b.destination_id === destId) || null;
+  // Only validate the selected route map on demand, instead of probing all
+  // maps under the same start point during the first query.
+  const binding = getCandidateBindingsForStart(startId).find((b) => b.destination_id === destId) || null;
+  if (!binding) return null;
+  const ok = await ensureMapAvailable(binding.map_name);
+  return ok ? binding : null;
 }
 
 async function getHotspotsByMapName(mapNameRaw) {

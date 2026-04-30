@@ -144,10 +144,15 @@ async function ensureMapAvailable(mapNameRaw) {
   return ok;
 }
 
-async function getUsableBindingsForStart(startId) {
-  const candidates = state.bindings.filter(
+function getCandidateBindingsForStart(startId) {
+  return state.bindings.filter(
     (b) => isBindingStructurallyUsable(b) && b.start_id === startId,
   );
+}
+
+async function getUsableBindingsForStart(startId, { verifyMap = true } = {}) {
+  const candidates = getCandidateBindingsForStart(startId);
+  if (!verifyMap) return candidates;
 
   const checks = await Promise.all(
     candidates.map(async (b) => ({ b, ok: await ensureMapAvailable(b.map_name) })),
@@ -156,16 +161,16 @@ async function getUsableBindingsForStart(startId) {
   return checks.filter((x) => x.ok).map((x) => x.b);
 }
 
-async function getDestinationsForStart(startId) {
-  const bindings = await getUsableBindingsForStart(startId);
+async function getDestinationsForStart(startId, options) {
+  const bindings = await getUsableBindingsForStart(startId, options);
   const destIds = new Set(bindings.map((b) => b.destination_id));
   return state.destinations
     .filter((d) => destIds.has(d.destination_id))
     .sort((a, b) => a.destination_name.localeCompare(b.destination_name, "zh-CN"));
 }
 
-async function syncDestinations() {
-  const list = await getDestinationsForStart(startSelect.value);
+async function syncDestinations(options) {
+  const list = await getDestinationsForStart(startSelect.value, options);
   fillSelect(destSelect, list, "destination_id", "destination_name");
 }
 
@@ -361,20 +366,18 @@ function loadFromEmbedded() {
   state.bindings = d.bindings || [];
 }
 
-async function getAvailableStarts() {
+function getAvailableStarts() {
   const startIds = new Set();
-  const uniqueStartIds = [...new Set(state.starts.map((s) => s.start_id))];
-  for (const sid of uniqueStartIds) {
-    if (CLOSED_POINT_IDS.has(sid)) continue;
-    const usable = await getUsableBindingsForStart(sid);
-    if (usable.length) startIds.add(sid);
+  for (const binding of state.bindings) {
+    if (!isBindingStructurallyUsable(binding)) continue;
+    startIds.add(binding.start_id);
   }
 
   return state.starts.filter((s) => startIds.has(s.start_id));
 }
 
 async function init() {
-  if (state.fileMode) {
+  if (window.NAV_DATA) {
     loadFromEmbedded();
   } else {
     state.starts = await loadCsv("data/starts.csv");
@@ -382,7 +385,7 @@ async function init() {
     state.bindings = await loadCsv("data/route-bindings.csv");
   }
 
-  const availableStarts = await getAvailableStarts();
+  const availableStarts = getAvailableStarts();
   fillSelect(startSelect, availableStarts, "start_id", "start_name");
 
   const q = new URLSearchParams(location.search);
@@ -392,9 +395,9 @@ async function init() {
     startSelect.value = qStart;
   }
 
-  await syncDestinations();
+  await syncDestinations({ verifyMap: false });
   if (qDest) {
-    const list = await getDestinationsForStart(startSelect.value);
+    const list = await getDestinationsForStart(startSelect.value, { verifyMap: false });
     if (list.some((d) => d.destination_id === qDest)) {
       destSelect.value = qDest;
     }
@@ -402,7 +405,7 @@ async function init() {
 }
 
 startSelect.addEventListener("change", async () => {
-  await syncDestinations();
+  await syncDestinations({ verifyMap: false });
   previewPanel.classList.add("hidden");
   stage.classList.add("hidden");
   empty.classList.remove("hidden");
